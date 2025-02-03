@@ -71,7 +71,7 @@
     .card-content { padding: 15px; }
     .card-content p {
       display: -webkit-box;
-      -webkit-line-clamp: 3; /* 説明文を3行に制限 */
+      -webkit-line-clamp: 3; /* カード内の説明文を3行に制限 */
       -webkit-box-orient: vertical;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -88,58 +88,35 @@
       header p { font-size: 1.1em; }
     }
     
-    /* モーダル（記事詳細）のスタイル */
-    .modal-overlay {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0, 0, 0, 0.6);
+    /* 記事詳細エリア */
+    .article-detail {
       display: none;
-      align-items: center;
-      justify-content: center;
-      z-index: 1000;
+      margin-top: 30px;
       padding: 20px;
-    }
-    .modal-content {
       background: #fff;
       border-radius: 10px;
-      max-width: 800px;
-      width: 100%;
-      max-height: 90vh;
-      overflow-y: auto;
-      padding: 20px;
-      position: relative;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     }
-    .modal-content h2 {
-      margin-bottom: 15px;
+    .article-detail h2 {
       font-size: 2em;
       color: #2f3e46;
+      margin-bottom: 15px;
     }
-    .modal-content p {
+    .article-detail p {
       margin-bottom: 15px;
       line-height: 1.5;
     }
-    .close-btn {
-      position: absolute;
-      top: 15px;
-      right: 15px;
-      background: #2f3e46;
+    .back-btn {
+      display: inline-block;
+      background-color: #2f3e46;
       color: #fff;
-      border: none;
-      border-radius: 50%;
-      width: 30px;
-      height: 30px;
+      padding: 8px 16px;
+      border-radius: 4px;
       cursor: pointer;
-      font-size: 1em;
+      transition: background-color 0.3s;
     }
-    /* 記事内の imageFX プロンプト用のスタイル */
-    .imagefx-prompt {
-      background: #f7f7f7;
-      border-left: 4px solid #2f3e46;
-      padding: 10px;
-      font-family: monospace;
-      font-size: 0.9em;
-      white-space: pre-wrap;
+    .back-btn:hover {
+      background-color: #1b262c;
     }
   </style>
 </head>
@@ -161,50 +138,43 @@
     <a href="#others">その他</a>
   </nav>
   
-  <!-- 記事カード一覧（id="latest" を設定） -->
-  <section class="cards-container" id="latest">
-    <!-- サンプル記事カード（NASA火星記事） -->
-    <article class="card" onclick="showArticle()">
-      <img src="https://via.placeholder.com/300x180" alt="火星の春">
-      <div class="card-content">
-        <p>NASAの探査機がとらえた火星の“激しすぎる春”の訪れ。氷の昇華現象とダイナミックな風景を記録。</p>
-      </div>
-    </article>
-    <!-- 他のカードを追加する場合はここに記述 -->
-  </section>
-  
-  <!-- モーダル（記事詳細） -->
-  <div class="modal-overlay" id="articleModal">
-    <div class="modal-content">
-      <button class="close-btn" onclick="closeArticle()">×</button>
+  <!-- コンテンツエリア（カード一覧または記事詳細） -->
+  <div id="contentArea">
+    <!-- 記事カード一覧 -->
+    <section class="cards-container" id="cardsContainer">
+      <!-- サンプル記事カード（NASA火星記事） -->
+      <article class="card" onclick="showArticle()">
+        <img src="https://via.placeholder.com/300x180" alt="火星の春">
+        <div class="card-content">
+          <p>NASAの探査機がとらえた火星の“激しすぎる春”の訪れ。氷の昇華現象とダイナミックな風景を記録。</p>
+        </div>
+      </article>
+      <!-- 必要に応じて他のカードを追加 -->
+    </section>
+    
+    <!-- 記事詳細エリア -->
+    <section class="article-detail" id="articleDetail">
+      <div class="back-btn" onclick="hideArticle()">← 一覧に戻る</div>
       <h2>NASAの探査機がとらえた火星の“激しすぎる春”の訪れ</h2>
-      <p><strong>記事の説明文：</strong><br>
-         NASAの最新火星探査機が撮影した画像から、火星における春の訪れとともに起こる氷の昇華現象が明らかになりました。この記事では、火星の表面に広がるダイナミックな地形変化と、春特有の活発な大気運動の様子を紹介します。</p>
-      <p><strong>記事の本文：</strong><br>
-         火星では、冬の間に蓄積された氷が固体から直接気体へと変化する「昇華」という現象が起こります。このプロセスにより、春が訪れると同時に火星の表面では急激な地形の変動や大気の流動が観測され、普段とは異なるダイナミックな風景が広がります。NASAの最新火星探査機は、これらの現象を高解像度の画像で捉え、火星の驚異的な気候変動をリアルタイムで記録しました。<br><br>
-         公開された画像には、赤みを帯びた火星の大地に、氷が昇華してできた細かな模様や、砂塵が舞い上がる様子が映し出され、火星の「激しすぎる春」は単なる気候の変化ではなく、火星全体の進化や大気の動態を考える上で重要な手がかりとなることが示唆されています。<br><br>
-         科学者たちは今回の観測結果から、火星の気候サイクルや、将来の有人探査ミッションに向けた新たな知見を得る可能性を期待しています。これらのデータは、惑星科学の新たな章を切り開くための貴重な情報となるでしょう。</p>
-      <p><strong>imageFX用プロンプト：</strong></p>
-      <div class="imagefx-prompt">
-火星の赤い大地に広がる春の風景。鮮やかなオレンジや深紅の土壌に、昇華した氷が微細なパターンを描き、砂塵が舞うダイナミックなシーン。NASAの探査機視点から、シネマティックなライティングとリアルなテクスチャで、幻想的かつ神秘的な火星の「激しすぎる春」を表現。
-      </div>
-    </div>
+      <p>
+        火星では、冬の間に蓄積された氷が固体から直接気体へと変化する「昇華」という現象が起こります。このプロセスにより、春が訪れると同時に火星の表面では急激な地形の変動や大気の流動が観測され、普段とは異なるダイナミックな風景が広がります。NASAの最新火星探査機は、これらの現象を高解像度の画像で捉え、火星の驚異的な気候変動をリアルタイムで記録しました。
+      </p>
+      <p>
+        公開された画像には、赤みを帯びた火星の大地に、氷が昇華してできた細かな模様や、砂塵が舞い上がる様子が映し出され、火星の「激しすぎる春」は単なる気候の変化ではなく、火星全体の進化や大気の動態を考える上で重要な手がかりとなることが示唆されています。科学者たちは今回の観測結果から、火星の気候サイクルや、将来の有人探査ミッションに向けた新たな知見を得る可能性を期待しています。これらのデータは、惑星科学の新たな章を切り開くための貴重な情報となるでしょう。
+      </p>
+    </section>
   </div>
   
-  <!-- JavaScript: モーダル表示制御 -->
+  <!-- JavaScript: 表示エリア切り替え -->
   <script>
     function showArticle() {
-      document.getElementById('articleModal').style.display = 'flex';
+      document.getElementById('cardsContainer').style.display = 'none';
+      document.getElementById('articleDetail').style.display = 'block';
     }
-    function closeArticle() {
-      document.getElementById('articleModal').style.display = 'none';
+    function hideArticle() {
+      document.getElementById('articleDetail').style.display = 'none';
+      document.getElementById('cardsContainer').style.display = 'grid';
     }
-    // モーダル外クリックで閉じる
-    document.getElementById('articleModal').addEventListener('click', function(e) {
-      if(e.target === this) {
-        closeArticle();
-      }
-    });
   </script>
 </body>
 </html>
