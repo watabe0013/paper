@@ -4,25 +4,44 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>最新科学ニュース</title>
-  <link rel="stylesheet" href="css/style.css">
+  <!-- Google Fonts の読み込み（例：Roboto） -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    /* リセットと基本スタイル */
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: Arial, sans-serif; line-height: 1.6; background-color: #f9f9f9; padding: 20px; }
-    a { text-decoration: none; color: inherit; }
-    
-    /* ヘッダー */
-    header {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 20px;
-      padding-bottom: 10px;
-      border-bottom: 1px solid #ddd;
+    /* リセット・基本設定 */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
-    header h1 { font-size: 2em; margin: 10px 0; }
-    header p { font-size: 1.2em; color: #666; margin: 10px 0; }
+    body {
+      font-family: 'Roboto', sans-serif;
+      line-height: 1.6;
+      background: linear-gradient(to right, #f0f4f8, #d9e2ec);
+      padding: 20px;
+      color: #333;
+    }
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+    
+    /* ヘッダー：タイトルとサブタイトルを中央寄せ */
+    header {
+      text-align: center;
+      margin-bottom: 30px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid #ccc;
+    }
+    header h1 {
+      font-size: 2.8em;
+      font-weight: 700;
+      margin-bottom: 10px;
+      color: #2f3e46;
+    }
+    header p {
+      font-size: 1.3em;
+      color: #5a6d7c;
+    }
     
     /* カテゴリボタン */
     .category-nav {
@@ -31,62 +50,76 @@
     }
     .category-nav a {
       display: inline-block;
-      background-color: #007acc;
+      background-color: #2f3e46;
       color: #fff;
-      padding: 8px 16px;
-      margin: 4px;
-      border-radius: 4px;
-      transition: background-color 0.3s;
-      font-size: 0.9em;
+      padding: 10px 20px;
+      margin: 6px;
+      border-radius: 20px;
+      transition: background-color 0.3s, transform 0.2s;
+      font-size: 1em;
     }
-    .category-nav a:hover { background-color: #005fa3; }
+    .category-nav a:hover {
+      background-color: #1b262c;
+      transform: translateY(-2px);
+    }
     
     /* カードグリッド */
     .cards-container {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
+      gap: 30px;
+      margin-top: 30px;
     }
     .card {
       background-color: #fff;
-      border: 1px solid #ddd;
-      border-radius: 6px;
+      border-radius: 10px;
       overflow: hidden;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-      transition: transform 0.2s;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      transition: transform 0.2s, box-shadow 0.2s;
     }
-    .card:hover { transform: translateY(-3px); }
-    .card img { width: 100%; display: block; }
-    .card-content { padding: 10px 15px; }
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+    }
+    .card img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .card-content {
+      padding: 15px;
+    }
     .card-content p {
       display: -webkit-box;
-      -webkit-line-clamp: 3;
+      -webkit-line-clamp: 3; /* 説明文を3行に制限 */
       -webkit-box-orient: vertical;
       overflow: hidden;
       text-overflow: ellipsis;
-      color: #333;
       font-size: 0.95em;
+      color: #555;
       margin: 0;
       min-height: calc(1.2em * 3 + 4px);
     }
     
-    /* レスポンシブ対応（スマホ版は1列） */
+    /* レスポンシブ対応（スマホは1列に） */
     @media (max-width: 768px) {
-      .cards-container { grid-template-columns: 1fr; }
-      header { flex-direction: column; align-items: flex-start; }
-      header p { margin-top: 5px; }
+      .cards-container {
+        grid-template-columns: 1fr;
+      }
+      header h1 {
+        font-size: 2.2em;
+      }
+      header p {
+        font-size: 1.1em;
+      }
     }
   </style>
 </head>
 <body>
   <!-- ヘッダー -->
   <header>
-    <div class="title">
-      <h1>最新科学ニュース</h1>
-    </div>
-    <div class="subtitle">
-      <p>最新の論文や科学ニュースを紹介</p>
-    </div>
+    <h1>最新科学ニュース</h1>
+    <p>最新の論文や科学ニュースを紹介</p>
   </header>
   
   <!-- カテゴリボタン -->
@@ -100,14 +133,14 @@
     <a href="#others">その他</a>
   </nav>
   
-  <!-- 記事カード一覧（ここに id="latest" を追加） -->
+  <!-- 記事カード一覧（id="latest" を設定） -->
   <section class="cards-container" id="latest">
     <!-- カード1 -->
     <article class="card">
       <a href="記事のリンク1.html">
         <img src="https://via.placeholder.com/300x180" alt="サムネイル1">
         <div class="card-content">
-          <p>この記事の説明文がここに入ります。最新の論文や科学ニュースについての内容を簡潔にまとめた3行程度のテキストです。</p>
+          <p>この記事の説明文がここに入ります。最新の論文や科学ニュースについての内容を簡潔にまとめたテキストです。</p>
         </div>
       </a>
     </article>
@@ -116,7 +149,7 @@
       <a href="記事のリンク2.html">
         <img src="https://via.placeholder.com/300x180" alt="サムネイル2">
         <div class="card-content">
-          <p>この記事の説明文がここに入ります。最新の論文や科学ニュースについての内容を簡潔にまとめた3行程度のテキストです。</p>
+          <p>この記事の説明文がここに入ります。最新の論文や科学ニュースについての内容を簡潔にまとめたテキストです。</p>
         </div>
       </a>
     </article>
@@ -125,11 +158,11 @@
       <a href="記事のリンク3.html">
         <img src="https://via.placeholder.com/300x180" alt="サムネイル3">
         <div class="card-content">
-          <p>この記事の説明文がここに入ります。最新の論文や科学ニュースについての内容を簡潔にまとめた3行程度のテキストです。</p>
+          <p>この記事の説明文がここに入ります。最新の論文や科学ニュースについての内容を簡潔にまとめたテキストです。</p>
         </div>
       </a>
     </article>
-    <!-- 以下、カード4～6も同様に追加 -->
+    <!-- 追加のカード（カード4～6）を必要に応じて追加 -->
   </section>
 </body>
 </html>
