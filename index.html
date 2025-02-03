@@ -1,1 +1,193 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>最新科学ニュース</title>
+  <style>
+    /* リセット・基本設定 */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      background-color: #f9f9f9;
+      padding: 20px;
+    }
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+    /* ヘッダー */
+    header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #ddd;
+    }
+    header h1 {
+      font-size: 2em;
+      margin: 10px 0;
+    }
+    header p {
+      font-size: 1.2em;
+      color: #666;
+      margin: 10px 0;
+    }
+    /* カテゴリボタン */
+    .category-nav {
+      margin: 20px 0;
+      text-align: center;
+    }
+    .category-nav a {
+      display: inline-block;
+      background-color: #007acc;
+      color: #fff;
+      padding: 8px 16px;
+      margin: 4px;
+      border-radius: 4px;
+      transition: background-color 0.3s;
+      font-size: 0.9em;
+    }
+    .category-nav a:hover {
+      background-color: #005fa3;
+    }
+    /* カードグリッド */
+    .cards-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 20px;
+    }
+    .card {
+      background-color: #fff;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      overflow: hidden;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      transition: transform 0.2s;
+    }
+    .card:hover {
+      transform: translateY(-3px);
+    }
+    .card img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .card-content {
+      padding: 10px 15px;
+    }
+    .card-content p {
+      display: -webkit-box;
+      -webkit-line-clamp: 3; /* 3行に制限 */
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      color: #333;
+      font-size: 0.95em;
+      margin: 0;
+      min-height: calc(1.2em * 3 + 4px); /* 行数分の高さを確保 */
+    }
+    /* レスポンシブ対応（スマホは1列） */
+    @media (max-width: 768px) {
+      .cards-container {
+        grid-template-columns: 1fr;
+      }
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      header p {
+        margin-top: 5px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- ヘッダー -->
+  <header>
+    <div class="title">
+      <h1>最新科学ニュース</h1>
+    </div>
+    <div class="subtitle">
+      <p>最新の論文や科学ニュースを紹介</p>
+    </div>
+  </header>
 
+  <!-- カテゴリボタン -->
+  <nav class="category-nav">
+    <a href="#latest">最新ニュース</a>
+    <a href="#science">科学</a>
+    <a href="#technology">テクノロジー</a>
+    <a href="#ai">AI</a>
+    <a href="#history_culture">歴史・文化</a>
+    <a href="#entertainment">エンタメ</a>
+    <a href="#others">その他</a>
+  </nav>
+
+  <!-- 記事カード一覧 -->
+  <section class="cards-container">
+    <!-- サンプルカード1 -->
+    <article class="card">
+      <a href="記事のリンク1.html">
+        <img src="https://via.placeholder.com/300x180" alt="サムネイル1">
+        <div class="card-content">
+          <p>この記事の説明文がここに入ります。最新の論文や科学ニュースについての内容を簡潔にまとめた3行程度のテキストです。</p>
+        </div>
+      </a>
+    </article>
+    <!-- サンプルカード2 -->
+    <article class="card">
+      <a href="記事のリンク2.html">
+        <img src="https://via.placeholder.com/300x180" alt="サムネイル2">
+        <div class="card-content">
+          <p>この記事の説明文がここに入ります。最新の論文や科学ニュースについての内容を簡潔にまとめた3行程度のテキストです。</p>
+        </div>
+      </a>
+    </article>
+    <!-- サンプルカード3 -->
+    <article class="card">
+      <a href="記事のリンク3.html">
+        <img src="https://via.placeholder.com/300x180" alt="サムネイル3">
+        <div class="card-content">
+          <p>この記事の説明文がここに入ります。最新の論文や科学ニュースについての内容を簡潔にまとめた3行程度のテキストです。</p>
+        </div>
+      </a>
+    </article>
+    <!-- サンプルカード4 -->
+    <article class="card">
+      <a href="記事のリンク4.html">
+        <img src="https://via.placeholder.com/300x180" alt="サムネイル4">
+        <div class="card-content">
+          <p>この記事の説明文がここに入ります。最新の論文や科学ニュースについての内容を簡潔にまとめた3行程度のテキストです。</p>
+        </div>
+      </a>
+    </article>
+    <!-- サンプルカード5 -->
+    <article class="card">
+      <a href="記事のリンク5.html">
+        <img src="https://via.placeholder.com/300x180" alt="サムネイル5">
+        <div class="card-content">
+          <p>この記事の説明文がここに入ります。最新の論文や科学ニュースについての内容を簡潔にまとめた3行程度のテキストです。</p>
+        </div>
+      </a>
+    </article>
+    <!-- サンプルカード6 -->
+    <article class="card">
+      <a href="記事のリンク6.html">
+        <img src="https://via.placeholder.com/300x180" alt="サムネイル6">
+        <div class="card-content">
+          <p>この記事の説明文がここに入ります。最新の論文や科学ニュースについての内容を簡潔にまとめた3行程度のテキストです。</p>
+        </div>
+      </a>
+    </article>
+    <!-- 必要に応じてカードを追加 -->
+  </section>
+</body>
+</html>
